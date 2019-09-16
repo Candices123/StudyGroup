@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./lib/vue.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+		<input type="text" v-model="n1"/>
+		
+		<select v-model="opt">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		
+		<input type="text" v-model="n2" />
+		
+		<input type="button" value="="  @click="calc"/>
+		
+		<input type="text" v-model="result" />
+	</div>
+    <script>
+        //创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data:{
+				n1: 0,
+				n2: 0,
+				result: 0,
+				opt: "-"
+			},
+            methods:{
+				calc(){ //计算器算数的方法
+				// 逻辑
+					// switch (this.opt){
+					// 	case '+':
+					// 		this.result = parseInt(this.n1) + parseInt(this.n2);
+					// 		break;
+					// 	case '-':
+					// 		this.result = parseInt(this.n1) - parseInt(this.n2);
+					// 		break;
+					// 	case '*':
+					// 		this.result = parseInt(this.n1) * parseInt(this.n2);
+					// 		break;
+					// 	case '/':
+					// 		this.result = parseInt(this.n1) / parseInt(this.n2);
+					// 		break;
+					// 	default:
+					// 		break;
+					// }
+					
+					// 注意: 投机取巧的方式,正式开发中,尽量少使用,因为eval()不安全,而且效率低,
+					// 调试也难
+					var codeStr = parseInt(this.n1) + this.opt + parseInt(this.n2);
+					this.result = eval(codeStr);
+				}
+			}
+        })
+    </script>
+</body>
+</html>
